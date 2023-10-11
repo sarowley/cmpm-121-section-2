@@ -16,10 +16,11 @@ let gameOver = true;
 document.addEventListener("mousedown", jump); //made it so jump on mouse down (sean comment)
 
 setInterval(function () {
-  Main();
+  Update(); //changed name with tony
 }, 10);
 
-function Main() {
+function Update() {
+  //changed name with tony
   if (gameOver == false) {
     score = score + 1;
     SetText("Score: " + score);
@@ -70,21 +71,10 @@ function CheckGameOver() {
     );
 
     //detect cactus collision
-    if (dinoTop >= 150 && Math.abs(cactusleft) < 7) {
-      //end game
-      console.log("player died!");
-      SetText("Final Score: " + score + "! Click To Play Again!");
-      gameOver = true;
-
-      //reset player
-      RemoveJump();
-
-      //reset cactus
-      RemoveObstacles();
-    }
-
-    //detect bird collision
-    if (dinoTop <= 55 && Math.abs(birdleft) < 11) {
+    if (
+      (dinoTop >= 150 && Math.abs(cactusleft) < 7) ||
+      (dinoTop <= 55 && Math.abs(birdleft) < 11) //combined these with tony
+    ) {
       //end game
       console.log("player died!");
       SetText("Final Score: " + score + "! Click To Play Again!");
