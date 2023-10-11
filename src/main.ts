@@ -13,7 +13,7 @@ SetText("click to start!");
 let isJumping = false; //changed this from var (sean comment)
 let gameOver = true;
 
-document.addEventListener("mousedown", () => jump()); //made it so jump on mouse down (sean comment)
+document.addEventListener("mousedown", jump); //made it so jump on mouse down (sean comment)
 
 setInterval(function () {
   Main();
@@ -34,7 +34,9 @@ function jump() {
     isJumping = true;
     dino?.classList.add("jump");
     setTimeout(RemoveJump, 500);
-  } else {
+  }
+  if (gameOver == true) {
+    //changed this with miles to make the score stop reseting when trying to jump in air
     StartGame();
   }
 }
