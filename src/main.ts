@@ -8,7 +8,7 @@ const bird = document.getElementById("bird");
 
 const scoreText = document.getElementById("scoreText");
 let score = 0;
-SetText("click to start!");
+setText("click to start!");
 
 let isJumping = false; //changed this from var (sean comment)
 let gameOver = true;
@@ -16,16 +16,16 @@ let gameOver = true;
 document.addEventListener("mousedown", jump); //made it so jump on mouse down (sean comment)
 
 setInterval(function () {
-  Update(); //changed name with tony
+  update(); //changed name with tony
 }, 10);
 
-function Update() {
+function update() {
   //changed name with tony
   if (gameOver == false) {
     score = score + 1;
-    SetText("Score: " + score);
+    setText("Score: " + score);
 
-    CheckGameOver();
+    checkGameOver();
   }
 }
 
@@ -34,39 +34,39 @@ function jump() {
     //combined them and got rid of a === (sean comment)
     isJumping = true;
     dino?.classList.add("jump");
-    setTimeout(RemoveJump, 500);
+    setTimeout(removeJump, 500);
   }
   if (gameOver == true) {
     //changed this with miles to make the score stop reseting when trying to jump in air
-    StartGame();
+    startGame();
   }
 }
 
-function RemoveJump() {
+function removeJump() {
   dino?.classList.remove("jump");
   isJumping = false;
   //mainLoop = mainLoop //bug fix?
 }
 
-function RemoveObstacles() {
+function removeObstacles() {
   cactus?.classList.remove("cactusMove");
   bird?.classList.remove("birdMove");
 }
 
-function CheckGameOver() {
+function checkGameOver() {
   if (gameOver == false && dino != null && cactus != null && bird != null) {
     //get is dinosaur jumping
-    let dinoTop = parseInt(
+    const dinoTop = parseInt(
       window.getComputedStyle(dino).getPropertyValue("top")
     );
 
     //get cactus position
-    let cactusleft = parseInt(
+    const cactusleft = parseInt(
       window.getComputedStyle(cactus).getPropertyValue("left")
     );
 
     //get bird position
-    let birdleft = parseInt(
+    const birdleft = parseInt(
       window.getComputedStyle(bird).getPropertyValue("left")
     );
 
@@ -77,19 +77,19 @@ function CheckGameOver() {
     ) {
       //end game
       console.log("player died!");
-      SetText("Final Score: " + score + "! Click To Play Again!");
+      setText("Final Score: " + score + "! Click To Play Again!");
       gameOver = true;
 
       //reset player
-      RemoveJump();
+      removeJump();
 
       //reset cactus
-      RemoveObstacles();
+      removeObstacles();
     }
   }
 }
 
-function StartGame() {
+function startGame() {
   console.log("Game started!");
   gameOver = false;
   score = 0;
@@ -97,7 +97,7 @@ function StartGame() {
   bird?.classList.add("birdMove");
 }
 
-function SetText(s: string) {
+function setText(s: string) {
   if (scoreText) {
     scoreText.textContent = s;
   }
