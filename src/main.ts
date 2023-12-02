@@ -8,7 +8,7 @@ const bird = document.getElementById("bird");
 
 const scoreText = document.getElementById("scoreText");
 let score = 0;
-setText("click to start!");
+setText("Click To Start!");
 
 let isJumping = false; //changed this from var (sean comment)
 let gameOver = true;
